@@ -4,10 +4,10 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern =require("./lib/intern");
 const body = require("./src/body.js");
-const engineerCard = require("./src/engineerCard.js");
-const internCard = require("./src/internCard.js");
-const managerCard = require("./src/managerCard.js");
-const cards =[]
+const EngineerCard = require("./src/engineerCard.js");
+const InternCard = require("./src/internCard.js");
+const ManagerCard = require("./src/managerCard.js");
+const cards =[];
 //importing filesystem
 const fs = require('fs');
 const employees = [];
