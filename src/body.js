@@ -1,5 +1,7 @@
-function body(cards){
-    return `<!DOCTYPE html>
+function body(cards) {
+    for 
+  
+  `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -14,7 +16,7 @@ function body(cards){
     <span class="navbar-brand  mb-0 h1">Our Team</span>
   </div>
 </nav>
-${cards}
+${cardelements.manager}
 </body>
 </html>`
 

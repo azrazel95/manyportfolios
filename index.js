@@ -2,12 +2,12 @@
 const inquirer = require("./node_modules/inquirer");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
-const Intern =require("./lib/intern");
+const Intern = require("./lib/intern");
 const body = require("./src/body.js");
 const EngineerCard = require("./src/engineerCard.js");
 const InternCard = require("./src/internCard.js");
 const ManagerCard = require("./src/managerCard.js");
-const cards =[];
+const cards = [];
 //importing filesystem
 const fs = require('fs');
 const employees = [];
@@ -35,16 +35,16 @@ inquirer
             message: "What is the team managers office number?",
             name: "officeNumber",
         },
-       
+
     ])
     //getting the answers to the prompts and splitting them into variables to be used in the HTML file to be created
     .then((answers) => {
-        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber) 
-            employees.push(manager);
-            mainMenu();
+        const employee = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+        employees.push(employee);
+        mainMenu();
     });
-    function mainMenu(){
-        inquirer
+function mainMenu() {
+    inquirer
         .prompt([
             {
                 type: "list",
@@ -52,7 +52,7 @@ inquirer
                 choices: ["add engineer", "add intern", "quit"],
                 name: "options"
             },
-        ]).then(answers=>{
+        ]).then(answers => {
             if (answers.options === "add engineer") {
                 addEngineer()
             } else if (answers.options === "add intern") {
@@ -61,7 +61,7 @@ inquirer
                 buildTeam()
             }
         })
-    };
+};
 function addEngineer() {
     inquirer
         .prompt([
@@ -85,9 +85,9 @@ function addEngineer() {
                 message: "What is the engineers github account?",
                 name: "github",
             }
-        ]).then(answers=>{
-            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github) 
-            employees.push(engineer);
+        ]).then(answers => {
+            const employee = new Engineer(answers.name, answers.id, answers.email, answers.github)
+            employees.push(employee);
             mainMenu();
         })
 }
@@ -114,9 +114,9 @@ function addIntern() {
                 message: "What is the interns school?",
                 name: "school",
             }
-        ]).then(answers=>{
-            const intern = new Intern(answers.name, answers.id, answers.email, answers.school) 
-            employees.push(intern);
+        ]).then(answers => {
+            const employee = new Intern(answers.name, answers.id, answers.email, answers.school)
+            employees.push(employee);
             mainMenu();
         })
 }
@@ -126,15 +126,16 @@ function buildTeam() {
     for (let i = 0; i < employees.length; i++) {
         const employee = employees[i];
         // check if employee is a Manager
-        if (employee instanceof Manager) {
+        if (employees[i].getRole() === "Manager") {
+            console.log(employee)
             // create a new ManagerCard and pass the employee's information as arguments
-            const managerCard = new ManagerCard(employee.name, employee.id, employee.email, employee.officeNumber);
+            const managerCard = new ManagerCard(employee.name, employee.id, employee.email, employee.officeNumber,);
             cards.push(managerCard);
-        } else if (employee instanceof Engineer) {
+        } else if (employees[i].getRole() ===  "Engineer") {
             // create a new EngineerCard and pass the employee's information as arguments
             const engineerCard = new EngineerCard(employee.name, employee.id, employee.email, employee.github);
             cards.push(engineerCard);
-        } else if (employee instanceof Intern) {
+        } else if (employees[i].getRole() ===  "Intern") {
             // create a new InternCard and pass the employee's information as arguments
             const internCard = new InternCard(employee.name, employee.id, employee.email, employee.school);
             cards.push(internCard);
