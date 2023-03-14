@@ -119,8 +119,8 @@ function addIntern() {
             mainMenu();
         })
 }
- function makesite(team){
-    fs.writeFile('./dist/index.html', team, (err) => {
+ function makesite(){
+    fs.writeFile('./dist/index.html', body(employees), (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
     });

@@ -1,7 +1,54 @@
-const EngineerCard = require("./engineerCard.js");
-const InternCard = require("./internCard.js");
-const ManagerCard = require("./managerCard.js");
-function body(cards) {
+
+let cards = []
+
+function body(employees) {
+  
+function ManagerCard(employee) {
+  return `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${employee.name}</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item man">$Manager</li>
+        <li class="list-group-item">${employee.id}</li>
+        <li class="list-group-item">${employee.email}</li>
+        <li class="list-group-item">${employee.officeNumber}</li>
+      </ul>
+    </div>
+  </div>
+    `
+}
+
+
+function EngineerCard(employee) {
+  console.log(employee, "engineer")
+  return `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${employee.name}</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Engineer</li>
+        <li class="list-group-item">${employee.id}</li>
+        <li class="list-group-item">${employee.email}</li>
+        <li class="list-group-item">${employee.github}</li>
+      </ul>
+    </div>
+  </div>`
+}
+
+
+function InternCard(employee) {
+  return `
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">${employee.name}</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Intern</li>
+        <li class="list-group-item">${employee.id}</li>
+        <li class="list-group-item">${employee.email}</li>
+        <li class="list-group-item">${employee.school}</li>
+      </ul>
+    </div>
+  </div>` }
+
     for (let i = 0; i < employees.length; i++) {
         let employee = employees[i];
         // check if employee is a Manager
