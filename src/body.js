@@ -1,7 +1,27 @@
+const EngineerCard = require("./engineerCard.js");
+const InternCard = require("./internCard.js");
+const ManagerCard = require("./managerCard.js");
 function body(cards) {
-    for 
+    for (let i = 0; i < employees.length; i++) {
+        let employee = employees[i];
+        // check if employee is a Manager
+        if (employees[i].getRole() === "Manager") {
+            console.log(employee)
+            // create a new ManagerCard and pass the employee's information as arguments
+            let managerCard = ManagerCard(employee.name, employee.id, employee.email, employee.officeNumber,);
+            cards.push(managerCard);
+        } else if (employees[i].getRole() ===  "Engineer") {
+            // create a new EngineerCard and pass the employee's information as arguments
+            let engineerCard = EngineerCard(employee.name, employee.id, employee.email, employee.github);
+            cards.push(engineerCard);
+        } else if (employees[i].getRole() ===  "Intern") {
+            // create a new InternCard and pass the employee's information as arguments
+            let internCard = InternCard(employee.name, employee.id, employee.email, employee.school);
+            cards.push(internCard);
+        } 
+    } team = cards.join("");
   
-  `<!DOCTYPE html>
+  return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -16,7 +36,7 @@ function body(cards) {
     <span class="navbar-brand  mb-0 h1">Our Team</span>
   </div>
 </nav>
-${cardelements.manager}
+${team}
 </body>
 </html>`
 

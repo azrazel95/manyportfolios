@@ -1,6 +1,9 @@
 {
+  "scripts": {
+    "test": "jest --watch"
+  },
   "dependencies": {
     "inquirer": "^8.2.4",
-    "jest": "^29.3.1"
+    "jest": "^29.5.0"
   }
 }

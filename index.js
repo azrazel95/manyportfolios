@@ -4,10 +4,8 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const body = require("./src/body.js");
-const EngineerCard = require("./src/engineerCard.js");
-const InternCard = require("./src/internCard.js");
-const ManagerCard = require("./src/managerCard.js");
-const cards = [];
+
+let cards = [];
 //importing filesystem
 const fs = require('fs');
 const employees = [];
@@ -39,7 +37,7 @@ inquirer
     ])
     //getting the answers to the prompts and splitting them into variables to be used in the HTML file to be created
     .then((answers) => {
-        const employee = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+        let employee = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
         employees.push(employee);
         mainMenu();
     });
@@ -58,7 +56,8 @@ function mainMenu() {
             } else if (answers.options === "add intern") {
                 addIntern()
             } else {
-                buildTeam()
+                body(cards);
+                makesite(team)
             }
         })
 };
@@ -86,7 +85,7 @@ function addEngineer() {
                 name: "github",
             }
         ]).then(answers => {
-            const employee = new Engineer(answers.name, answers.id, answers.email, answers.github)
+            let employee = new Engineer(answers.name, answers.id, answers.email, answers.github)
             employees.push(employee);
             mainMenu();
         })
@@ -115,33 +114,13 @@ function addIntern() {
                 name: "school",
             }
         ]).then(answers => {
-            const employee = new Intern(answers.name, answers.id, answers.email, answers.school)
+            let employee = new Intern(answers.name, answers.id, answers.email, answers.school)
             employees.push(employee);
             mainMenu();
         })
 }
-function buildTeam() {
-    console.log(employees)
-    let cards = [];
-    for (let i = 0; i < employees.length; i++) {
-        const employee = employees[i];
-        // check if employee is a Manager
-        if (employees[i].getRole() === "Manager") {
-            console.log(employee)
-            // create a new ManagerCard and pass the employee's information as arguments
-            const managerCard = new ManagerCard(employee.name, employee.id, employee.email, employee.officeNumber,);
-            cards.push(managerCard);
-        } else if (employees[i].getRole() ===  "Engineer") {
-            // create a new EngineerCard and pass the employee's information as arguments
-            const engineerCard = new EngineerCard(employee.name, employee.id, employee.email, employee.github);
-            cards.push(engineerCard);
-        } else if (employees[i].getRole() ===  "Intern") {
-            // create a new InternCard and pass the employee's information as arguments
-            const internCard = new InternCard(employee.name, employee.id, employee.email, employee.school);
-            cards.push(internCard);
-        }
-    }
-    fs.writeFile('./dist/index.html', body(cards), (err) => {
+ function makesite(team){
+    fs.writeFile('./dist/index.html', team, (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
     });
