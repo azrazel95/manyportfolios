@@ -4,11 +4,12 @@ let cards = []
 function body(employees) {
   
 function ManagerCard(employee) {
-  return `<div class="card" style="width: 18rem;">
+  
+  return `<div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${employee.name}</h5>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item man">$Manager</li>
+        <li class="list-group-item man">Manager</li>
         <li class="list-group-item">${employee.id}</li>
         <li class="list-group-item">${employee.email}</li>
         <li class="list-group-item">${employee.officeNumber}</li>
@@ -20,8 +21,7 @@ function ManagerCard(employee) {
 
 
 function EngineerCard(employee) {
-  console.log(employee, "engineer")
-  return `<div class="card" style="width: 18rem;">
+  return `<div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${employee.name}</h5>
       <ul class="list-group list-group-flush">
@@ -35,9 +35,10 @@ function EngineerCard(employee) {
 }
 
 
+
 function InternCard(employee) {
   return `
-    <div class="card" style="width: 18rem;">
+  <div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${employee.name}</h5>
       <ul class="list-group list-group-flush">
@@ -51,21 +52,23 @@ function InternCard(employee) {
 
     for (let i = 0; i < employees.length; i++) {
         let employee = employees[i];
+        console.log(employees, employee, "array")
         // check if employee is a Manager
         if (employees[i].getRole() === "Manager") {
             console.log(employee)
             // create a new ManagerCard and pass the employee's information as arguments
-            let managerCard = ManagerCard(employee.name, employee.id, employee.email, employee.officeNumber,);
+            let managerCard = ManagerCard(employee);
             cards.push(managerCard);
         } else if (employees[i].getRole() ===  "Engineer") {
             // create a new EngineerCard and pass the employee's information as arguments
-            let engineerCard = EngineerCard(employee.name, employee.id, employee.email, employee.github);
+            let engineerCard = EngineerCard(employee);
             cards.push(engineerCard);
         } else if (employees[i].getRole() ===  "Intern") {
             // create a new InternCard and pass the employee's information as arguments
-            let internCard = InternCard(employee.name, employee.id, employee.email, employee.school);
+            let internCard = InternCard(employee);
             cards.push(internCard);
         } 
+        
     } team = cards.join("");
   
   return `<!DOCTYPE html>
@@ -83,7 +86,11 @@ function InternCard(employee) {
     <span class="navbar-brand  mb-0 h1">Our Team</span>
   </div>
 </nav>
+<div class="container text-center">
+    <div class="row">
 ${team}
+</div>
+</div>
 </body>
 </html>`
 
