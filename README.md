@@ -16,9 +16,9 @@
 
 
 an application to showcase your employees organized by job title 
+![an image showing 3 cards on a webpage](./lib/image/manyportfolios.png)
 
-
-
+[click me to view the walkthrough video](https://drive.google.com/file/d/1RQQx3GoA8Oo_4jgnK1Z4H7peU2HyHRvh/view)
 
 
 ## Installation
