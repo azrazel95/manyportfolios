@@ -5,7 +5,7 @@ function body(employees) {
   
 function ManagerCard(employee) {
   
-  return `<div class="card" style="width: 18rem;">
+  return `<div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${employee.name}</h5>
       <ul class="list-group list-group-flush">
@@ -21,7 +21,7 @@ function ManagerCard(employee) {
 
 
 function EngineerCard(employee) {
-  return `<div class="card" style="width: 18rem;">
+  return `<div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${employee.name}</h5>
       <ul class="list-group list-group-flush">
@@ -35,9 +35,10 @@ function EngineerCard(employee) {
 }
 
 
+
 function InternCard(employee) {
   return `
-    <div class="card" style="width: 18rem;">
+  <div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
     <div class="card-body">
       <h5 class="card-title">${employee.name}</h5>
       <ul class="list-group list-group-flush">
@@ -85,7 +86,11 @@ function InternCard(employee) {
     <span class="navbar-brand  mb-0 h1">Our Team</span>
   </div>
 </nav>
+<div class="container text-center">
+    <div class="row">
 ${team}
+</div>
+</div>
 </body>
 </html>`
 
