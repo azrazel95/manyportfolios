@@ -1,7 +1,8 @@
-
+//imports our modules
 const Engineer = require("../lib/Engineer.js");
+//sets up the test input
 const engineer = new Engineer("Amelia", "2", "amelia@mail.com", "ameliabedelia");
-
+//tests
 test("test if constructor returns correct values", () => {
     expect(engineer.name).toBe("Amelia");
     expect(engineer.id).toBe("2");

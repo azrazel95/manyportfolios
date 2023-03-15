@@ -1,8 +1,8 @@
-
+//declaring the cards array
 let cards = []
-
+//the function that creates the body of the html file
 function body(employees) {
-  
+  //the functions that take in the employee from the for loop and distribute it along the cards
 function ManagerCard(employee) {
   
   return `<div class="card m-5 align-items-center col bg-danger" style="width: 18rem; height: 18rem;">
@@ -50,27 +50,30 @@ function InternCard(employee) {
     </div>
   </div>` }
 
+  //for loop to iterate iver the employee array
     for (let i = 0; i < employees.length; i++) {
+      //declaring the current index of employees as employee
         let employee = employees[i];
-        console.log(employees, employee, "array")
         // check if employee is a Manager
         if (employees[i].getRole() === "Manager") {
-            console.log(employee)
-            // create a new ManagerCard and pass the employee's information as arguments
+            // creates a new ManagerCard and passes the employee
             let managerCard = ManagerCard(employee);
+            //pushes the card into the cards array
             cards.push(managerCard);
         } else if (employees[i].getRole() ===  "Engineer") {
-            // create a new EngineerCard and pass the employee's information as arguments
+            // creates a new EngineerCard and passes the employee
             let engineerCard = EngineerCard(employee);
+            //pushes the card into the cards array
             cards.push(engineerCard);
         } else if (employees[i].getRole() ===  "Intern") {
-            // create a new InternCard and pass the employee's information as arguments
+            // creates a new InternCard and passes the employee
             let internCard = InternCard(employee);
+            //pushes the card into the cards array
             cards.push(internCard);
         } 
-        
+        //joins the cards array into a readable string
     } team = cards.join("");
-  
+  //returns the index page "shell", so to speak, wrapping around the cards passed as team
   return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -88,6 +91,7 @@ function InternCard(employee) {
 </nav>
 <div class="container text-center">
     <div class="row">
+    
 ${team}
 </div>
 </div>

@@ -1,19 +1,21 @@
-//importing inquirer
+//importing our modules
 const inquirer = require("./node_modules/inquirer");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const body = require("./src/body.js");
-
+//declaring the cards array
 let cards = [];
 //importing filesystem
 const fs = require('fs');
+//declaring the employee array
 const employees = [];
 //inquirerfunction
 inquirer
     //calling the prompt method
     .prompt([
         {
+            //asking our questions
             type: "input",
             message: "What is the team managers name?",
             name: "name",
@@ -38,9 +40,12 @@ inquirer
     //getting the answers to the prompts and splitting them into variables to be used in the HTML file to be created
     .then((answers) => {
         let employee = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+        //pushing our instance of manager into employees
         employees.push(employee);
+        //returns to main menu
         mainMenu();
     });
+    //main menu function, offering an engineer, intern, or quit option
 function mainMenu() {
     inquirer
         .prompt([
@@ -56,11 +61,13 @@ function mainMenu() {
             } else if (answers.options === "add intern") {
                 addIntern()
             } else {
+                //quit option instigates the else statement, and starts the body(cards) function, which then leads unto makesite, taking in the joined html file 
                 body(cards);
-                makesite(team)
+                makesite()
             }
         })
 };
+//asks the engineer questions
 function addEngineer() {
     inquirer
         .prompt([
@@ -85,11 +92,13 @@ function addEngineer() {
                 name: "github",
             }
         ]).then(answers => {
+            //pushes the instance of engineer into cards then returns main menu
             let employee = new Engineer(answers.name, answers.id, answers.email, answers.github)
             employees.push(employee);
             mainMenu();
         })
 }
+//asks the intern questions
 function addIntern() {
     inquirer
         .prompt([
@@ -114,11 +123,13 @@ function addIntern() {
                 name: "school",
             }
         ]).then(answers => {
+            //pushes the instance of intern into cards then returns main menu
             let employee = new Intern(answers.name, answers.id, answers.email, answers.school)
             employees.push(employee);
             mainMenu();
         })
 }
+//writes the accumulated html info from body into the distribution folder
  function makesite(){
     fs.writeFile('./dist/index.html', body(employees), (err) => {
         if (err) throw err;
